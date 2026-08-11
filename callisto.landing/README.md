@@ -22,12 +22,6 @@ La page est responsive, accessible au clavier et respecte le design system Calli
 
 ## Liste d’attente
 
-La route `POST /api/waitlist` valide les données puis les transmet à l’API Callisto `POST /api/public/waitlist`. Les inscriptions sont ainsi conservées dans la base principale de Callisto, et non dans une base propre à la landing.
+La route `POST /api/waitlist` valide les données du formulaire. La persistance D1 a été retirée afin que la landing Vercel ne possède pas une base commerciale séparée.
 
-Configurer les variables suivantes dans `.env.local` et dans Vercel :
-
-```env
-CALLISTO_API_URL=https://api.callistopilot.com
-# Facultatif si l’API publique exige une authentification serveur à serveur
-CALLISTO_WAITLIST_API_KEY=
-```
+La transmission vers l’API Callisto sera activée lorsque l’endpoint public de liste d’attente et son contrat auront été confirmés. Tant qu’elle n’est pas configurée, la route retourne `503` et ne transmet ni ne conserve aucune donnée personnelle.
