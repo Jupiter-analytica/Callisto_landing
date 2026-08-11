@@ -1,13 +1,13 @@
 # Callisto Pilot Landing
 
-Landing page commerciale premium de Callisto Pilot.
+Landing page commerciale premium de Callisto Pilot, basée sur Next.js officiel et déployable sur Vercel.
 
 ## Développement
 
-Prérequis : Node.js 22.13 ou supérieur.
+Prérequis : Node.js 22.
 
 ```bash
-npm run install:ci
+npm install
 npm run dev
 ```
 
@@ -15,22 +15,13 @@ npm run dev
 
 ```bash
 npm run build
-npm test
+npm run lint
 ```
 
 La page est responsive, accessible au clavier et respecte le design system Callisto Pilot. Les fichiers graphiques officiels se trouvent dans `public/`.
 
 ## Liste d’attente
 
-Les inscriptions sont enregistrées dans Cloudflare D1 via la liaison `DB`. Le
-formulaire normalise les adresses email, bloque les doublons et exige un
-consentement explicite.
+La route `POST /api/waitlist` valide les données du formulaire. La persistance D1 a été retirée afin que la landing Vercel ne possède pas une base commerciale séparée.
 
-Après toute modification de `db/schema.ts`, générer et inspecter la migration :
-
-```bash
-npm run db:generate
-```
-
-Les migrations générées dans `drizzle/` font partie de l’artefact de
-déploiement et sont appliquées automatiquement par la plateforme.
+La transmission vers l’API Callisto sera activée lorsque l’endpoint public de liste d’attente et son contrat auront été confirmés. Tant qu’elle n’est pas configurée, la route retourne `503` et ne transmet ni ne conserve aucune donnée personnelle.
