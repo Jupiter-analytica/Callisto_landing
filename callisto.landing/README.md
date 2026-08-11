@@ -7,7 +7,7 @@ Landing page commerciale premium de Callisto Pilot, basée sur Next.js officiel 
 Prérequis : Node.js 22.
 
 ```bash
-npm ci
+npm install
 npm run dev
 ```
 
